@@ -1,0 +1,12 @@
+venv/
+.env*
+__pycache__/
+
+keys/
+
+inventory.ini
+kube/
+
+buffer/
+
+open-secrets/

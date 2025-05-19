@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    project: microservices_mp4-to-mp3-converter
+spec:
+  selector:
+    matchLabels:
+      db: mysql
+  strategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        db: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:latest
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "500Mi"
+            limits:
+              cpu: "500m"
+              memory: "1Gi"
+          envFrom:
+            - secretRef:
+                name: mysql-secret
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-pv
+              mountPath: /var/lib/mysql
+            - name: mysql-init
+              mountPath: /docker-entrypoint-initdb.d
+      volumes:
+        - name: mysql-pv
+          persistentVolumeClaim:
+            claimName: mysql-pvc
+        - name: mysql-init
+          configMap:
+            name: mysql-initdb
+            
