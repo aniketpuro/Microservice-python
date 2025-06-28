@@ -258,7 +258,7 @@ MIT License
 ## 👨‍💻 Author
 
 Aniket Purohit – [LinkedIn](https://www.linkedin.com/in/aniket-purohit/)
-
+Thanks
 ```
 
 Let me know if you'd like me to generate this as a file or add badges, live demo links, or GitHub Actions CI setup too!
